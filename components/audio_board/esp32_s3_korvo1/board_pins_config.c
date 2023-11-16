@@ -91,6 +91,16 @@ esp_err_t get_spi_pins(spi_bus_config_t *spi_config, spi_device_interface_config
     return ESP_OK;
 }
 
+esp_err_t i2s_mclk_gpio_select(i2s_port_t i2s_num, gpio_num_t gpio_num)
+{
+    if (i2s_num >= I2S_NUM_MAX) {
+        ESP_LOGE(TAG, "Does not support i2s number(%d)", i2s_num);
+        return ESP_ERR_INVALID_ARG;
+    }
+    ESP_LOGI(TAG, "I2S%d, MCLK output by GPIO%d", i2s_num, gpio_num);
+    return ESP_OK;
+}
+
 // sdcard
 
 int8_t get_sdcard_intr_gpio(void)
