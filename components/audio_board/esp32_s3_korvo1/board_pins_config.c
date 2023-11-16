@@ -50,7 +50,7 @@ esp_err_t get_i2c_pins(i2c_port_t port, i2c_config_t *i2c_config)
     return ESP_OK;
 }
 
-esp_err_t get_i2s_pins(i2s_port_t port, board_i2s_pin_t *i2s_config)
+esp_err_t get_i2s_pins(i2s_port_t port, i2s_pin_config_t *i2s_config)
 {
     AUDIO_NULL_CHECK(TAG, i2s_config, return ESP_FAIL);
     if (port == I2S_NUM_0) { // Codec
@@ -66,7 +66,7 @@ esp_err_t get_i2s_pins(i2s_port_t port, board_i2s_pin_t *i2s_config)
         i2s_config->data_in_num = GPIO_NUM_11;
         i2s_config->mck_io_num = GPIO_NUM_20;
     } else {
-        memset(i2s_config, -1, sizeof(board_i2s_pin_t));
+        memset(i2s_config, -1, sizeof(i2s_pin_config_t));
         ESP_LOGE(TAG, "i2s port %d is not supported", port);
         return ESP_FAIL;
     }
